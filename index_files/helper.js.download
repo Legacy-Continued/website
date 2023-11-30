@@ -1,0 +1,91 @@
+
+// ================================================================
+
+const EAGLER_1_8_CLIENT = "/mc/1.8.8/";
+const EAGLER_1_5_CLIENT = "/mc/1.5.2/";
+const EAGLER_B1_3_CLIENT = "/mc/b1.3/";
+
+const COUNTER = "https://api.api-ninjas.com/v1/counter?id=eaglercraft.com&hit=true";
+
+const EAGLER_1_8_OFFLINE = [ "https://bafybeicagzvkpu3wr7l2jklo54lqu7l5f3lqpqhevp54uekqpsdft2kjvy.ipfs.dweb.link/?filename=EaglercraftX_1.8_Ultimate_Offline.zip", "EaglercraftX_1.8_Ultimate_Offline.zip" ];
+const EAGLER_1_5_OFFLINE = [ "https://bafybeihqzktptevgim3shzanqnwcdnstac2ud6rqe5zrtudcuo3gnzhsui.ipfs.dweb.link/?filename=Offline_Download_Version.zip", "Offline_Download_Version.zip" ];
+const EAGLER_B1_3_OFFLINE = [ "https://bafybeicby4t45ztzr2bnbit2ts7nwd7esktiekgnuk4qetifjhyrremqim.ipfs.dweb.link/?filename=Eaglercraft_Beta_Offline_Download.zip", "Eaglercraft_Beta_Offline_Download.zip" ];
+
+const COUNTER_1_8_OFFLINE = null;
+const COUNTER_1_5_OFFLINE = null;
+const COUNTER_B1_3_OFFLINE = null;
+
+
+const EAGLER_1_8_PLUGIN = [ "https://deev.is/eagler/EaglerXBungee-1.0.8.jar", "EaglerXBungee-1.0.8.jar" ];
+const EAGLER_1_5_PLUGIN = [ "https://deev.is/eagler/eaglerbungee-1.5.2.zip", "eaglerbungee-1.5.2.zip" ];
+const EAGLER_B1_3_PLUGIN = [ "https://deev.is/eagler/eaglerbukkit-b1.3.zip", "eaglerbukkit-b1.3.zip" ];
+
+const COUNTER_1_8_PLUGIN = null;
+const COUNTER_1_5_PLUGIN = null;
+const COUNTER_B1_3_PLUGIN = null;
+
+const IPFS_LOAD_TIME_WARNING = () => alert("Notice: Some links might take several minutes to load!\n\nPlease be patient you eagler");
+
+// ================================================================
+
+
+function playNow() {
+    const version = $("#Version option:selected").val();
+    if (version == 'r1.8') {
+        if(typeof COUNTER == "string") $.ajax({method: 'GET', headers: { 'X-Api-Key': 'L+V7cvfWHQOvVDYfyYjkiA==9vs8Sk4DrXIOpNSZ'}, url: COUNTER, dataType: "script", success: ""});
+        location.replace(EAGLER_1_8_CLIENT);
+    }
+    if (version == 'r1.5') {
+        if(typeof COUNTER == "string") $.ajax({method: 'GET', headers: { 'X-Api-Key': 'L+V7cvfWHQOvVDYfyYjkiA==9vs8Sk4DrXIOpNSZ'}, url: COUNTER, dataType: "script", success: ""});
+        location.replace(EAGLER_1_5_CLIENT);
+    }
+    if (version == 'b1.3') {
+        if(typeof COUNTER == "string") $.ajax({method: 'GET', headers: { 'X-Api-Key': 'L+V7cvfWHQOvVDYfyYjkiA==9vs8Sk4DrXIOpNSZ'}, url: COUNTER, dataType: "script", success: ""});
+        location.replace(EAGLER_B1_3_CLIENT);
+    }
+}
+
+function downloadFileFromURL(urlIn, filenameOut) {
+    const cunt = document.createElement("a");
+    cunt.href = urlIn;
+    cunt.download = filenameOut;
+    cunt.click();
+}
+
+function downloadOfflineNow() {
+    const version = $("#Version option:selected").val();
+    if (version == 'r1.8') {
+        IPFS_LOAD_TIME_WARNING();
+        if(typeof COUNTER == "string") $.ajax({url: COUNTER, dataType: "script", success: ""});
+       downloadFileFromURL(EAGLER_1_8_OFFLINE[0], EAGLER_1_8_OFFLINE[1]);
+    }
+    if (version == 'r1.5') {
+        IPFS_LOAD_TIME_WARNING();
+        if(typeof COUNTER == "string") $.ajax({url: COUNTER, dataType: "script", success: ""});
+        downloadFileFromURL(EAGLER_1_5_OFFLINE[0], EAGLER_1_5_OFFLINE[1]);
+    }
+    if (version == 'b1.3') {
+        IPFS_LOAD_TIME_WARNING();
+        if(typeof COUNTER == "string") $.ajax({url: COUNTER, dataType: "script", success: ""});
+        downloadFileFromURL(EAGLER_B1_3_OFFLINE[0], EAGLER_B1_3_OFFLINE[1]);
+    }
+}
+
+function downloadPluginNow() {
+    const version = $("#Version option:selected").val();
+    if (version == 'r1.8') {
+       downloadFileFromURL(EAGLER_1_8_PLUGIN[0], EAGLER_1_8_PLUGIN[1]);
+    }
+    if (version == 'r1.5') {
+        downloadFileFromURL(EAGLER_1_5_PLUGIN[0], EAGLER_1_5_PLUGIN[1]);
+    }
+    if (version == 'b1.3') {
+        downloadFileFromURL(EAGLER_B1_3_PLUGIN[0], EAGLER_B1_3_PLUGIN[1]);
+    }
+}
+
+window.addEventListener("load", () => {
+    $("#play-now").on("click", playNow);
+    $("#download-offline").on("click", downloadOfflineNow);
+    $("#download-plugin").on("click", downloadPluginNow);
+});
